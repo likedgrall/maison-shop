@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Maison — магазин мебели</title>
+
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <a href="#" class="logo">Maison</a>
+
+    <nav class="nav">
+      <a href="#home">Главная</a>
+      <a href="#about">О компании</a>
+      <a href="#products">Каталог</a>
+      <a href="#footer">Контакты</a>
+    </nav>
+
+    <button class="cart-btn" id="openCartBtn">
+      Корзина <span id="cartCount">0</span>
+    </button>
+
+    <button class="burger" id="burgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <h1>Создаём пространство, в которое хочется возвращаться</h1>
+        <p>
+          Подберите мебель для гостиной, спальни или рабочего кабинета.
+          Спокойные оттенки, натуральные материалы и продуманная форма.
+        </p>
+        <a href="#products" class="main-btn">Смотреть каталог</a>
+      </div>
+
+      <div class="hero-showcase" aria-label="Преимущества магазина Maison">
+        <div class="showcase-card main-offer">
+          <span>Новая коллекция</span>
+          <strong>12 предметов мебели</strong>
+          <p>Диваны, столы, кресла и системы хранения в теплой природной гамме.</p>
+        </div>
+
+        <div class="showcase-grid">
+          <div class="showcase-card">
+            <span>Материалы</span>
+            <strong>Дерево и лен</strong>
+          </div>
+          <div class="showcase-card">
+            <span>Доставка</span>
+            <strong>от 2 дней</strong>
+          </div>
+        </div>
+
+        <div class="showcase-price">
+          <span>Популярный выбор</span>
+          <strong>от 9 900 ₽</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-text">
+        <h2>О компании Maison</h2>
+        <p>
+          Maison - это магазин мебели для тех, кто ценит спокойный дизайн,
+          понятные формы и долговечность. Мы собираем коллекции, которые легко
+          вписываются в современную квартиру, дом или студию.
+        </p>
+        <p>
+          В каталоге - диваны, кресла, столы, шкафы и другая мебель в мягкой
+          природной цветовой гамме.
+        </p>
+      </div>
+
+      <div class="about-image">
+        <img src="./images/about-person.png" alt="Консультант мебельного магазина" />
+      </div>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="section-head">
+        <div>
+          <h2>Каталог мебели</h2>
+        </div>
+
+        <div class="slider-controls">
+          <button id="prevBtn">←</button>
+          <button id="nextBtn">→</button>
+        </div>
+      </div>
+
+      <div class="slider">
+        <div class="products-track" id="productsTrack"></div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-head">
+      <h3>Корзина</h3>
+      <button id="closeCartBtn">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-bottom">
+      <div class="cart-total">
+        <span>Итого:</span>
+        <strong id="cartTotal">0 ₽</strong>
+      </div>
+
+      <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+    </div>
+  </aside>
+
+  <div class="cart-shadow" id="cartShadow"></div>
+
+  <div class="quick-modal" id="quickModal">
+    <div class="quick-box">
+      <button class="quick-close" id="quickCloseBtn">×</button>
+      <h3>Покупка в 1 клик</h3>
+      <p id="quickProductText"></p>
+
+      <form class="quick-form">
+        <input type="text" placeholder="Ваше имя" />
+        <input type="tel" placeholder="Телефон" />
+        <button type="button" id="quickSendBtn">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer" id="footer">
+    <div>
+      <h3>Maison</h3>
+      <p>
+        Магазин мебели для спокойных, тёплых и продуманных интерьеров.
+      </p>
+    </div>
+
+    <div>
+      <h4>Покупателям</h4>
+      <span>Доставка</span>
+      <span>Оплата</span>
+      <span>Возврат</span>
+      <span>Гарантия</span>
+    </div>
+
+    <div>
+      <h4>Контакты</h4>
+      <span>+7 900 000-00-00</span>
+      <span>hello@maison.ru</span>
+      <span>Москва, ул. Светлая, 12</span>
+      <span>Ежедневно 10:00–21:00</span>
+    </div>
+  </footer>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
