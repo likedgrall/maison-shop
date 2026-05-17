@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Maison — магазин мебели</title>
+  <title>Maison - магазин мебели</title>
 
   <link rel="stylesheet" href="./css/style.css" />
 </head>
@@ -13,7 +13,7 @@
   <header class="header">
     <a href="#" class="logo">Maison</a>
 
-    <nav class="nav">
+    <nav class="nav" id="mobileMenu">
       <a href="#home">Главная</a>
       <a href="#about">О компании</a>
       <a href="#products">Каталог</a>
@@ -24,7 +24,7 @@
       Корзина <span id="cartCount">0</span>
     </button>
 
-    <button class="burger" id="burgerBtn">
+    <button class="burger" id="burgerBtn" type="button" aria-label="Открыть меню" aria-controls="mobileMenu" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
@@ -133,8 +133,9 @@
       <p id="quickProductText"></p>
 
       <form class="quick-form">
-        <input type="text" placeholder="Ваше имя" />
-        <input type="tel" placeholder="Телефон" />
+        <input type="text" id="quickName" placeholder="Ваше имя" />
+        <input type="tel" id="quickPhone" placeholder="Телефон" />
+        <span class="quick-error" id="quickError"></span>
         <button type="button" id="quickSendBtn">Отправить заявку</button>
       </form>
     </div>
@@ -144,7 +145,7 @@
     <div>
       <h3>Maison</h3>
       <p>
-        Магазин мебели для спокойных, тёплых и продуманных интерьеров.
+        Магазин мебели для спокойных, теплых и продуманных интерьеров.
       </p>
     </div>
 
@@ -161,7 +162,7 @@
       <span>+7 900 000-00-00</span>
       <span>hello@maison.ru</span>
       <span>Москва, ул. Светлая, 12</span>
-      <span>Ежедневно 10:00–21:00</span>
+      <span>Ежедневно 10:00-21:00</span>
     </div>
   </footer>
 

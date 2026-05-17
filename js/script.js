@@ -114,9 +114,13 @@ const quickModal = document.querySelector("#quickModal");
 const quickCloseBtn = document.querySelector("#quickCloseBtn");
 const quickProductText = document.querySelector("#quickProductText");
 const quickSendBtn = document.querySelector("#quickSendBtn");
+const quickName = document.querySelector("#quickName");
+const quickPhone = document.querySelector("#quickPhone");
+const quickError = document.querySelector("#quickError");
 
 const burgerBtn = document.querySelector("#burgerBtn");
 const nav = document.querySelector(".nav");
+const navLinks = document.querySelectorAll(".nav a");
 
 let sliderIndex = 0;
 let cart = [];
@@ -284,15 +288,35 @@ function closeCart() {
 function openQuickBuy(productId) {
   const product = products.find(item => item.id === productId);
   quickProductText.textContent = `Вы выбрали: ${product.title} — ${formatPrice(product.price)}. Оставьте контакты, и менеджер свяжется с вами.`;
+  quickError.textContent = "";
+  quickName.classList.remove("input-error");
+  quickPhone.classList.remove("input-error");
   quickModal.classList.add("active");
+  document.body.classList.add("modal-open");
+  quickName.focus();
 }
 
 function closeQuickBuy() {
   quickModal.classList.remove("active");
+  document.body.classList.remove("modal-open");
 }
 
 function sendQuickRequest() {
+  const name = quickName.value.trim();
+  const phone = quickPhone.value.trim();
+
+  quickName.classList.toggle("input-error", !name);
+  quickPhone.classList.toggle("input-error", !phone);
+
+  if (!name || !phone) {
+    quickError.textContent = "Заполните имя и телефон, чтобы отправить заявку.";
+    return;
+  }
+
+  quickError.textContent = "";
   alert("Заявка отправлена! В реальном проекте здесь можно подключить форму.");
+  quickName.value = "";
+  quickPhone.value = "";
   closeQuickBuy();
 }
 
@@ -303,6 +327,30 @@ function checkout() {
   }
 
   alert("Заказ оформлен! В реальном проекте здесь можно подключить форму или оплату.");
+}
+
+function openMenu() {
+  nav.classList.add("active");
+  burgerBtn.classList.add("active");
+  document.body.classList.add("menu-open");
+  burgerBtn.setAttribute("aria-expanded", "true");
+  burgerBtn.setAttribute("aria-label", "Закрыть меню");
+}
+
+function closeMenu() {
+  nav.classList.remove("active");
+  burgerBtn.classList.remove("active");
+  document.body.classList.remove("menu-open");
+  burgerBtn.setAttribute("aria-expanded", "false");
+  burgerBtn.setAttribute("aria-label", "Открыть меню");
+}
+
+function toggleMenu() {
+  if (nav.classList.contains("active")) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
 }
 
 prevBtn.addEventListener("click", prevSlide);
@@ -316,13 +364,31 @@ quickCloseBtn.addEventListener("click", closeQuickBuy);
 quickSendBtn.addEventListener("click", sendQuickRequest);
 checkoutBtn.addEventListener("click", checkout);
 
-burgerBtn.addEventListener("click", () => {
-  nav.classList.toggle("active");
+quickModal.addEventListener("click", event => {
+  if (event.target === quickModal) closeQuickBuy();
 });
 
-window.addEventListener("resize", updateSlider);
+[quickName, quickPhone].forEach(input => {
+  input.addEventListener("input", () => {
+    input.classList.remove("input-error");
+
+    if (quickName.value.trim() && quickPhone.value.trim()) {
+      quickError.textContent = "";
+    }
+  });
+});
+
+burgerBtn.addEventListener("click", toggleMenu);
+
+navLinks.forEach(link => {
+  link.addEventListener("click", closeMenu);
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 760) closeMenu();
+  updateSlider();
+});
 
 renderProducts();
 renderCart();
 updateSlider();
-
